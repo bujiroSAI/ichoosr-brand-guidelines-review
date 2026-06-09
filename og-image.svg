@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E3A2E"/>
+      <stop offset="50%" stop-color="#1B5340"/>
+      <stop offset="100%" stop-color="#2E7D5C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="80" y="180" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="6" fill="#97D1A0">BRAND PROPOSITION</text>
+  <text x="80" y="290" font-family="Inter, Helvetica, Arial, sans-serif" font-size="84" font-weight="800" fill="#FFFFFF">Together, we make</text>
+  <text x="80" y="380" font-family="Inter, Helvetica, Arial, sans-serif" font-size="84" font-weight="800" fill="#FFFFFF">good possible.</text>
+  <text x="80" y="450" font-family="Hiragino Kaku Gothic ProN, Yu Gothic, sans-serif" font-size="34" font-weight="500" fill="#E8F5E9">共に、納得できる選択を可能にする。</text>
+  <line x1="80" y1="510" x2="280" y2="510" stroke="#97D1A0" stroke-width="3"/>
+  <text x="80" y="555" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="2" fill="rgba(255,255,255,0.7)">iChoosr ｜ Brand Guidelines, Japan Edition</text>
+</svg>
