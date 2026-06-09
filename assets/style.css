@@ -1402,3 +1402,89 @@ footer .meta { margin-top: 8px; color: rgba(255,255,255,0.5); }
 @media (max-width: 540px) {
   .last-updated .lu-note { margin-left: 0; width: 100%; }
 }
+
+/* ============ 推奨案ヒーロー（緑グラデ＋原文内包） ============ */
+.recommend-hero {
+  background: linear-gradient(135deg, var(--deep) 0%, var(--mid) 100%);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 32px 38px;
+  margin: 18px 0 16px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.recommend-hero .rec-tag {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--deep);
+  background: var(--pale);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+.recommend-hero .rec-source {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+.recommend-hero .rec-source .src-label {
+  font-family: var(--font-en);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--pale);
+  display: block;
+  margin-bottom: 4px;
+}
+.recommend-hero .rec-source .en {
+  font-family: var(--font-en);
+  color: rgba(255,255,255,0.82);
+}
+.recommend-hero .rec-source .jp {
+  color: rgba(255,255,255,0.75);
+}
+.recommend-hero .rec-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.65;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.recommend-hero .rec-title.small { font-size: 18px; }
+.recommend-hero .rec-aim {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.88);
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.recommend-hero .rec-aim strong { color: var(--pale); }
+
+/* 他の候補 見出し */
+.other-options-head {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray);
+  letter-spacing: 0.04em;
+  margin: 24px 0 12px;
+  padding-left: 12px;
+  border-left: 3px solid var(--gray-light);
+}
+
+/* 他の候補カード（推奨を外したのでmid色のまま縦積み） */
+.other-options .option-card.recommended {
+  border-left-color: var(--mid);
+  background: var(--paper);
+}
+.other-options .option-card.recommended .opt-num {
+  background: var(--tint);
+  color: var(--deep);
+}
