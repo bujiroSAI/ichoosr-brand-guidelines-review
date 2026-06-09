@@ -52,12 +52,14 @@ body { font-family:var(--font); color:var(--ink); background:var(--deep); overfl
 
 /* 表紙 */
 .s-cover, .s-closing {
-  width:100%; max-width:960px; padding:56px; min-height:100%;
+  width:100%; min-height:100%; padding:64px 9vw;
   display:flex; flex-direction:column; justify-content:center;
   background:linear-gradient(135deg,var(--deep) 0%,#1B5340 55%,var(--mid) 100%);
   color:#fff;
 }
-.slide:first-child, .slide:last-child { background:var(--deep); }
+/* 表紙・クロージングは全面グラデ（内側の矩形境界をなくす） */
+.slide.is-cover { padding:0; }
+.slide.is-cover .slide-inner { max-width:none; width:100%; padding:0; height:100%; }
 .cover-label { font-family:var(--font-en); font-size:12px; font-weight:700; letter-spacing:.16em; color:var(--pale); margin-bottom:24px; }
 .s-cover h1, .s-closing h1 { font-size:38px; font-weight:800; line-height:1.4; margin-bottom:24px; }
 @media (max-width:680px) { .s-cover h1, .s-closing h1 { font-size:27px; } }
@@ -103,8 +105,8 @@ body { font-family:var(--font); color:var(--ink); background:var(--deep); overfl
 .lb-desc { font-size:13.5px; line-height:1.7; color:var(--gray); }
 
 /* セクション共通 */
-.sec-grid { display:flex; gap:28px; }
-@media (max-width:680px) { .sec-grid { flex-direction:column; gap:16px; } }
+.sec-grid { display:flex; gap:28px; align-items:center; }
+@media (max-width:680px) { .sec-grid { flex-direction:column; gap:16px; align-items:stretch; } }
 .sec-left { flex:1; }
 .sec-right { flex:1.1; }
 .src-box { background:#F2F3EF; border-radius:8px; padding:16px 18px; margin-bottom:14px; }
@@ -157,12 +159,26 @@ body { font-family:var(--font); color:var(--ink); background:var(--deep); overfl
 .nav .pageno { font-family:var(--font-en); font-size:12px; color:#fff; font-weight:600; min-width:48px; text-align:center; }
 .progress { position:fixed; top:0; left:0; height:3px; background:var(--pale); z-index:51; transition:width .2s; }
 .wip { position:fixed; top:8px; right:12px; font-size:10px; color:rgba(255,255,255,.5); z-index:50; font-family:var(--font-en); }
+
+/* ===== 印刷／PDF（各スライド1ページ・16:9横） ===== */
+@media print {
+  html, body { height:auto; overflow:visible; background:#fff; }
+  .deck { display:block; width:auto; height:auto; overflow:visible; scroll-snap-type:none; }
+  .slide { width:1280px; height:720px; page-break-after:always; break-after:page; overflow:hidden; }
+  .slide-inner { width:1280px; max-width:1280px; height:720px; padding:40px 70px; justify-content:center; overflow:hidden; }
+  .nav, .progress, .wip { display:none !important; }
+  @page { size:1280px 720px; margin:0; }
+  .rec-box, .gov-hero, .fstep.accent, .s-cover, .s-closing,
+  .layer-box.what, .layer-box.how, .ask-box, .src-box {
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+}
 </style>
 </head>
 <body>
 <div class="progress" id="progress"></div>
 <div class="deck" id="deck">
-<section class="slide" id="slide-1"><div class="slide-inner">
+<section class="slide is-cover" id="slide-1"><div class="slide-inner">
 <div class="s-cover">
   <div class="cover-label">ブランドガイドライン 日本版 ｜ 報告会</div>
   <h1>「みんなのおうちに太陽光」<br>ブランドガイドライン 日本版</h1>
@@ -379,7 +395,7 @@ body { font-family:var(--font); color:var(--ink); background:var(--deep); overfl
   <div class="al-row"><span class="al-sec">Values</span><p>ブランド固有／共同購入 の使い分けの考え方でよいか</p></div>
 </div>
 </div></section>
-<section class="slide" id="slide-15"><div class="slide-inner">
+<section class="slide is-cover" id="slide-15"><div class="slide-inner">
 <div class="s-closing">
   <div class="cover-label">今後の進め方</div>
   <h1>本日のご意見を反映し、<br>最終版に仕上げていきます。</h1>
