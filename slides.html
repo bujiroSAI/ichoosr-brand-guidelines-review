@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>iChoosr ブランドガイドライン 日本版 ｜ 報告会</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root {
+  --deep:#0E3A2E; --mid:#2E7D5C; --soft:#5BA68A; --pale:#97D1A0;
+  --tint:#E8F5E9; --bg:#FAFAF8; --paper:#FFF; --ink:#1A1A1A;
+  --gray:#5A5A5A; --line:#E5E5E2; --amber:#C77800; --amber-soft:#FDF4E3;
+  --font:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+  --font-en:"Inter","Helvetica Neue",Arial,sans-serif;
+}
+* { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+html,body { height:100%; }
+body { font-family:var(--font); color:var(--ink); background:var(--deep); overflow:hidden; }
+
+.deck {
+  display:flex; flex-direction:row;
+  width:100%; height:100vh; height:100dvh;
+  overflow-x:auto; overflow-y:hidden;
+  scroll-snap-type:x mandatory; scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+}
+.deck::-webkit-scrollbar { display:none; }
+.slide {
+  flex:0 0 100%; width:100vw; height:100vh; height:100dvh;
+  scroll-snap-align:center; scroll-snap-stop:always;
+  display:flex; align-items:center; justify-content:center;
+  padding:0; background:var(--bg);
+}
+.slide-inner {
+  width:100%; max-width:960px; height:100%;
+  padding:48px 56px; overflow-y:auto;
+  display:flex; flex-direction:column; justify-content:center;
+}
+@media (max-width:680px) {
+  .slide-inner { padding:60px 24px 40px; justify-content:flex-start; }
+}
+
+/* 見出し */
+.s-head { margin-bottom:24px; border-left:5px solid var(--deep); padding-left:16px; }
+.s-num { font-family:var(--font-en); font-size:13px; font-weight:700; color:var(--mid); letter-spacing:.1em; }
+.s-cat { font-size:12px; font-weight:700; color:var(--amber); margin-left:10px; letter-spacing:.04em; }
+.s-head h2 { font-size:30px; font-weight:800; color:var(--deep); line-height:1.3; margin-top:6px; }
+@media (max-width:680px) { .s-head h2 { font-size:23px; } }
+.lead { font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:24px; }
+.note-line { font-size:12.5px; color:var(--gray); margin-top:24px; }
+
+/* 表紙 */
+.s-cover, .s-closing {
+  width:100%; max-width:960px; padding:56px; min-height:100%;
+  display:flex; flex-direction:column; justify-content:center;
+  background:linear-gradient(135deg,var(--deep) 0%,#1B5340 55%,var(--mid) 100%);
+  color:#fff;
+}
+.slide:first-child, .slide:last-child { background:var(--deep); }
+.cover-label { font-family:var(--font-en); font-size:12px; font-weight:700; letter-spacing:.16em; color:var(--pale); margin-bottom:24px; }
+.s-cover h1, .s-closing h1 { font-size:38px; font-weight:800; line-height:1.4; margin-bottom:24px; }
+@media (max-width:680px) { .s-cover h1, .s-closing h1 { font-size:27px; } }
+.cover-sub { font-size:16px; line-height:1.8; color:rgba(255,255,255,.9); margin-bottom:40px; }
+@media (max-width:680px) { .cover-sub { font-size:14px; } }
+.cover-foot { font-family:var(--font-en); font-size:12px; color:rgba(255,255,255,.6); padding-top:24px; border-top:1px solid rgba(255,255,255,.2); }
+
+/* ゴール */
+.goal-grid { display:flex; flex-direction:column; gap:14px; }
+.goal-card { background:var(--paper); border-radius:10px; padding:20px 24px; border-left:4px solid var(--mid); box-shadow:0 1px 3px rgba(14,58,46,.08); display:grid; grid-template-columns:40px 1fr; gap:16px; align-items:start; }
+.gnum { font-family:var(--font-en); font-size:26px; font-weight:800; color:var(--mid); line-height:1; }
+.goal-card h3 { font-size:16px; color:var(--deep); margin-bottom:4px; }
+.goal-card p { font-size:13.5px; line-height:1.7; color:var(--gray); }
+
+/* フロー */
+.flow-steps { display:flex; align-items:stretch; gap:8px; flex-wrap:wrap; }
+.fstep { flex:1; min-width:140px; background:var(--paper); border-radius:10px; padding:18px 18px; box-shadow:0 1px 3px rgba(14,58,46,.08); }
+.fstep.accent { background:var(--deep); color:#fff; }
+.fstep.accent h3, .fstep.accent .ft-tag { color:#fff; }
+.fstep.accent p { color:rgba(255,255,255,.85); }
+.ft-tag { font-family:var(--font-en); font-size:10px; font-weight:700; letter-spacing:.1em; color:var(--mid); display:block; margin-bottom:8px; }
+.fstep h3 { font-size:15px; color:var(--deep); margin-bottom:6px; }
+.fstep p { font-size:12px; line-height:1.6; color:var(--gray); }
+.farrow { align-self:center; color:var(--gray); font-size:18px; }
+@media (max-width:680px) { .farrow { display:none; } .flow-steps { flex-direction:column; } }
+
+/* 基本方針 */
+.principle-grid { display:flex; gap:16px; flex-wrap:wrap; }
+.p-card { flex:1; min-width:200px; background:var(--paper); border-radius:10px; padding:24px 26px; border-top:4px solid var(--mid); box-shadow:0 1px 3px rgba(14,58,46,.08); }
+.pk { font-family:var(--font-en); font-size:12px; font-weight:700; color:var(--mid); letter-spacing:.08em; margin-bottom:10px; }
+.p-card h3 { font-size:19px; color:var(--deep); line-height:1.45; margin-bottom:12px; }
+.p-card p { font-size:13.5px; line-height:1.75; color:var(--gray); }
+
+/* 全体構造 */
+.layer-grid { display:flex; flex-direction:column; gap:16px; }
+.layer-box { border-radius:10px; padding:24px 28px; }
+.layer-box.what { background:var(--tint); border-left:4px solid var(--deep); }
+.layer-box.how { background:var(--amber-soft); border-left:4px solid var(--amber); }
+.lb-tag { font-family:var(--font-en); font-size:12px; font-weight:700; letter-spacing:.1em; display:block; margin-bottom:10px; }
+.layer-box.what .lb-tag { color:var(--deep); }
+.layer-box.how .lb-tag { color:var(--amber); }
+.lb-items { font-size:15px; font-weight:700; color:var(--deep); margin-bottom:8px; }
+.lb-desc { font-size:13.5px; line-height:1.7; color:var(--gray); }
+
+/* セクション共通 */
+.sec-grid { display:flex; gap:28px; }
+@media (max-width:680px) { .sec-grid { flex-direction:column; gap:16px; } }
+.sec-left { flex:1; }
+.sec-right { flex:1.1; }
+.src-box { background:#F2F3EF; border-radius:8px; padding:16px 18px; margin-bottom:14px; }
+.src-lbl { font-family:var(--font-en); font-size:10px; font-weight:700; letter-spacing:.1em; color:var(--gray); display:block; margin-bottom:8px; }
+.src-en { font-family:var(--font-en); font-size:12px; line-height:1.65; color:var(--gray); margin-bottom:6px; }
+.src-jp { font-size:12.5px; line-height:1.7; color:var(--gray); }
+.policy-line { font-size:13.5px; line-height:1.75; color:var(--ink); }
+.pl-lbl { display:inline-block; font-size:11px; font-weight:700; color:#fff; background:var(--mid); padding:2px 8px; border-radius:4px; margin-right:8px; }
+.rec-box { background:linear-gradient(135deg,var(--deep) 0%,var(--mid) 100%); color:#fff; border-radius:10px; padding:22px 24px; margin-bottom:14px; box-shadow:0 4px 16px rgba(14,58,46,.18); }
+.rec-lbl { display:inline-block; font-family:var(--font-en); font-size:10.5px; font-weight:700; letter-spacing:.1em; color:var(--deep); background:var(--pale); padding:3px 10px; border-radius:999px; margin-bottom:12px; }
+.rec-main { font-size:17px; font-weight:700; line-height:1.6; margin-bottom:10px; }
+@media (max-width:680px) { .rec-main { font-size:15.5px; } }
+.rec-aim { font-size:12.5px; line-height:1.7; color:rgba(255,255,255,.88); padding-top:10px; border-top:1px solid rgba(255,255,255,.2); }
+.other-box { background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin-bottom:12px; }
+.ob-label { font-size:11px; font-weight:700; color:var(--gray); display:block; margin-bottom:8px; }
+.other-box ul { list-style:none; }
+.other-box li { font-size:12.5px; line-height:1.7; color:var(--ink); padding:3px 0; }
+.other-box li strong { color:var(--mid); }
+.ask-box { background:var(--amber-soft); border-left:4px solid var(--amber); border-radius:6px; padding:14px 18px; font-size:13px; line-height:1.7; color:var(--ink); }
+.ask-label { font-size:11px; font-weight:700; color:var(--amber); display:block; margin-bottom:6px; }
+
+/* KMH */
+.kmh-rows { display:flex; flex-direction:column; gap:10px; }
+.kr { display:grid; grid-template-columns:54px 1fr; gap:16px; background:var(--paper); border-radius:8px; padding:16px 20px; box-shadow:0 1px 3px rgba(14,58,46,.08); border-left:4px solid var(--soft); align-items:start; }
+.kr-lv { font-family:var(--font-en); font-size:20px; font-weight:800; color:var(--deep); }
+.kr strong { font-size:14px; color:var(--deep); }
+.kr p { font-size:13px; line-height:1.65; color:var(--ink); margin-top:4px; }
+.kr-note { display:block; font-size:11.5px; color:var(--amber); margin-top:4px; }
+
+/* ガバナンス */
+.gov-hero { background:linear-gradient(135deg,var(--deep) 0%,var(--mid) 100%); color:#fff; border-radius:12px; padding:28px 32px; margin-bottom:20px; }
+.gov-lead { font-size:18px; line-height:1.7; }
+@media (max-width:680px) { .gov-lead { font-size:15px; } }
+.gov-grid { display:flex; gap:14px; flex-wrap:wrap; }
+.gov-card { flex:1; min-width:180px; background:var(--paper); border-radius:10px; padding:20px 22px; border-top:4px solid var(--mid); box-shadow:0 1px 3px rgba(14,58,46,.08); }
+.gov-card h3 { font-size:15px; color:var(--deep); margin-bottom:8px; }
+.gov-card p { font-size:12.5px; line-height:1.7; color:var(--gray); }
+
+/* 論点まとめ */
+.ask-list { display:flex; flex-direction:column; gap:10px; }
+.al-row { display:grid; grid-template-columns:160px 1fr; gap:16px; background:var(--paper); border-radius:8px; padding:14px 20px; box-shadow:0 1px 3px rgba(14,58,46,.08); border-left:4px solid var(--amber); align-items:center; }
+@media (max-width:680px) { .al-row { grid-template-columns:1fr; gap:4px; } }
+.al-sec { font-size:13px; font-weight:700; color:var(--deep); }
+.al-row p { font-size:13px; line-height:1.6; color:var(--ink); }
+
+/* ナビ */
+.nav { position:fixed; bottom:18px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:14px; background:rgba(14,58,46,.9); padding:8px 16px; border-radius:999px; z-index:50; }
+.nav button { background:none; border:none; color:#fff; font-size:18px; cursor:pointer; padding:4px 8px; line-height:1; }
+.nav button:disabled { opacity:.3; }
+.nav .pageno { font-family:var(--font-en); font-size:12px; color:#fff; font-weight:600; min-width:48px; text-align:center; }
+.progress { position:fixed; top:0; left:0; height:3px; background:var(--pale); z-index:51; transition:width .2s; }
+.wip { position:fixed; top:8px; right:12px; font-size:10px; color:rgba(255,255,255,.5); z-index:50; font-family:var(--font-en); }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+<section class="slide" id="slide-1"><div class="slide-inner">
+<div class="s-cover">
+  <div class="cover-label">ブランドガイドライン 日本版 ｜ 報告会</div>
+  <h1>「みんなのおうちに太陽光」<br>ブランドガイドライン 日本版</h1>
+  <p class="cover-sub">本国 Switch Together Brand Guidelines を、<br>3回のワークショップを経て日本市場向けにチューニングしました。</p>
+  <div class="cover-foot">iChoosr Japan ／ 2026</div>
+</div>
+</div></section>
+<section class="slide" id="slide-2"><div class="slide-inner">
+<div class="s-head"><span class="s-num">01</span><h2>本日のゴール</h2></div>
+<div class="goal-grid">
+  <div class="goal-card"><div class="gnum">1</div><h3>日本版の方向性を共有する</h3><p>本国ブックを日本市場向けにどう変えたか、その考え方と各要素の案をご覧いただきます。</p></div>
+  <div class="goal-card"><div class="gnum">2</div><h3>いくつかの論点にご意見をいただく</h3><p>まだ決め切れていない点について、皆さまの感覚をお聞かせください。</p></div>
+  <div class="goal-card"><div class="gnum">3</div><h3>運用の進め方を確認する</h3><p>このガイドラインを「作って終わり」にせず、どう使い続けるかを共有します。</p></div>
+</div>
+<p class="note-line">※ 完成版ではなく、議論のたたき台です。本日の意見を踏まえて仕上げていきます。</p>
+</div></section>
+<section class="slide" id="slide-3"><div class="slide-inner">
+<div class="s-head"><span class="s-num">02</span><h2>プロジェクトの全体像</h2></div>
+<p class="lead">本国のブランドブックを起点に、3回のワークショップで日本市場の実態と現場の声を反映し、日本版に落とし込みました。</p>
+<div class="flow-steps">
+  <div class="fstep"><span class="ft-tag">INPUT</span><h3>本国ブランドブック</h3><p>Switch Together Brand Guidelines ＋ fy26追加資料</p></div>
+  <div class="farrow">→</div>
+  <div class="fstep"><span class="ft-tag">WS 01-03</span><h3>3回のワークショップ</h3><p>内部分析 / 外部分析 / ユーザー分析</p></div>
+  <div class="farrow">→</div>
+  <div class="fstep"><span class="ft-tag">ミニWS</span><h3>方向性の確認</h3><p>各要素をどう変えるかを合意（5/18）</p></div>
+  <div class="farrow">→</div>
+  <div class="fstep accent"><span class="ft-tag">OUTPUT</span><h3>日本版ガイドライン</h3><p>本日ご報告する成果物</p></div>
+</div>
+</div></section>
+<section class="slide" id="slide-4"><div class="slide-inner">
+<div class="s-head"><span class="s-num">03</span><h2>日本版チューニングの 3つの基本方針</h2></div>
+<div class="principle-grid">
+  <div class="p-card"><div class="pk">方針 1</div><h3>本国の主要素は<br>変えない</h3><p>ミッション・ビジョンなどブランドの幹は本国のまま。日本が独自に作り変えるものではない、という前提を守ります。</p></div>
+  <div class="p-card"><div class="pk">方針 2</div><h3>直訳調を<br>避ける</h3><p>「いかにも外資」「漢字が多い」「長すぎる」というワークショップの声を受け、生活者に届く日本語に整えます。</p></div>
+  <div class="p-card"><div class="pk">方針 3</div><h3>社会性を<br>上から押し付けない</h3><p>「サステナブル」を前面に掲げると、生活者から距離ができる。理念ではなく、暮らしの実利から語りかけます。</p></div>
+</div>
+</div></section>
+<section class="slide" id="slide-5"><div class="slide-inner">
+<div class="s-head"><span class="s-num">04</span><h2>ガイドラインの全体構造</h2></div>
+<p class="lead">ブランド要素は、性質によって「考え方を訳す層」と「運用で活かす層」に分かれます。</p>
+<div class="layer-grid">
+  <div class="layer-box what">
+    <span class="lb-tag">WHAT ｜ 理念の層</span>
+    <p class="lb-items">Mission・Vision ／ Brand Promise ／ Brand Proposition ／ Brand Story</p>
+    <p class="lb-desc">主に「どう訳すか」が論点。本国の主要素は変えず、日本語の伝わり方を整える。</p>
+  </div>
+  <div class="layer-box how">
+    <span class="lb-tag">HOW ｜ 運用の層</span>
+    <p class="lb-items">Brand Personality ／ Brand Values ／ Key Message Hierarchy</p>
+    <p class="lb-desc">主に「どう運用するか」が論点。訳より、構造の理解と現場での使い方が重要。</p>
+  </div>
+</div>
+</div></section>
+<section class="slide" id="slide-6"><div class="slide-inner">
+<div class="s-head"><span class="s-num">05</span><span class="s-cat">WHAT ｜ 理念</span><h2>Mission / Vision</h2></div>
+<div class="sec-grid">
+  <div class="sec-left">
+    <div class="src-box">
+      <span class="src-lbl">原文</span>
+      <p class="src-en">To make it easy for everyone to contribute to the energy transition.</p>
+      <p class="src-jp">誰もが、エネルギー転換に貢献することを容易にする。</p>
+    </div>
+    <div class="policy-line"><span class="pl-lbl">方針</span>本国フレームは維持。「エネルギー転換」を生活者の言葉に開き、社会性を上から出さない。</div>
+  </div>
+  <div class="sec-right">
+    <div class="rec-box">
+      <span class="rec-lbl">日本版（推奨）</span>
+      <p class="rec-main">【Vision】誰もが、暮らしのエネルギー選びに、自然と関われるようにする。<br>【Mission】家庭と事業者をデジタルサービスで結ぶことで、暮らしのエネルギーの選択を、誰もが納得して進められるようにする。</p>
+      <p class="rec-aim">「貢献」を「関わる」に開き、自分ごと感を高めた。</p>
+    </div>
+    <div class="other-box"><span class="ob-label">他の候補</span><ul><li><strong>安心軸：</strong>暮らしのエネルギーの選択を、安心して決められる社会をつくる。</li><li><strong>社会貢献軸：</strong>エネルギー転換を加速させ、誰もがその一歩を踏み出せる社会をつくる。</li></ul></div>
+    <div class="ask-box"><span class="ask-label">ご意見をいただきたい点</span>「エネルギー転換」の言い換え方（脱炭素など）と、社会性をどこまで前に出すか。</div>
+  </div>
+</div>
+</div></section>
+<section class="slide" id="slide-7"><div class="slide-inner">
+<div class="s-head"><span class="s-num">06</span><span class="s-cat">WHAT ｜ 理念</span><h2>Brand Promise</h2></div>
+<div class="sec-grid">
+  <div class="sec-left">
+    <div class="src-box">
+      <span class="src-lbl">原文</span>
+      <p class="src-en">At Switch Together, we use our expert guidance and the power of group buying to make sustainable choices accessible and straightforward for everyone.</p>
+      <p class="src-jp">専門的なガイダンスと共同購入の力を活用し、持続可能な選択肢を誰もが簡単にできるようにします。</p>
+    </div>
+    <div class="policy-line"><span class="pl-lbl">方針</span>「共同購入」はそのまま使用。社会貢献ニュアンスは弱め、暮らしの実利を軸に。</div>
+  </div>
+  <div class="sec-right">
+    <div class="rec-box">
+      <span class="rec-lbl">日本版（推奨）</span>
+      <p class="rec-main">「みんなのおうちに太陽光」は、専門のガイドと共同購入の力で、暮らしを良くする選択を、誰もが納得して進められるものにします。</p>
+      <p class="rec-aim">標語：<strong>暮らしのエネルギー選びを、みんなで。</strong>（英文 Empowering Sustainable Choices, Together. は残す）</p>
+    </div>
+    <div class="other-box"><span class="ob-label">他の候補</span><ul><li><strong>社会貢献軸：</strong>サステナブルな選択を、誰にとっても可能にします。</li><li><strong>直訳寄り：</strong>専門的なガイダンスと共同購入の力で、サステナブルな選択を分かりやすくします。</li></ul></div>
+    <div class="ask-box"><span class="ask-label">ご意見をいただきたい点</span>社会貢献のニュアンスをどこまで残すか。標語の方向性。</div>
+  </div>
+</div>
+</div></section>
+<section class="slide" id="slide-8"><div class="slide-inner">
+<div class="s-head"><span class="s-num">07</span><span class="s-cat">WHAT ｜ 理念</span><h2>Brand Proposition（"good"）</h2></div>
+<div class="sec-grid">
+  <div class="sec-left">
+    <div class="src-box">
+      <span class="src-lbl">原文</span>
+      <p class="src-en">Together, we make good possible.</p>
+      <p class="src-jp">共に、私たちは「good」を可能にする。</p>
+    </div>
+    <div class="policy-line"><span class="pl-lbl">方針</span>「good」は一語に訳さず、共同購入の3つの軸で中身を語る（本国の意図を尊重）。</div>
+  </div>
+  <div class="sec-right">
+    <div class="rec-box">
+      <span class="rec-lbl">日本版（推奨）</span>
+      <p class="rec-main">Together, we make good possible.<br>共に、納得できる選択を可能にする。</p>
+      <p class="rec-aim">「good」の中身＝①適正な価格 ②審査済みの施工業者 ③専門のガイダンス（急かさず、わかる言葉で、確かな情報だけ）</p>
+    </div>
+    
+    <div class="ask-box"><span class="ask-label">ご意見をいただきたい点</span>「専門のガイダンス」をどう言い表すか（ここはWSで議論し切れていません）。「納得」という言葉でよいか。</div>
+  </div>
+</div>
+</div></section>
+<section class="slide" id="slide-9"><div class="slide-inner">
+<div class="s-head"><span class="s-num">08</span><span class="s-cat">WHAT ｜ 理念</span><h2>Brand Story</h2></div>
+<div class="sec-grid">
+  <div class="sec-left">
+    <div class="src-box">
+      <span class="src-lbl">原文</span>
+      <p class="src-en">In a world where making sustainable choices often feels overwhelming, Switch Together was born from a simple yet powerful idea… With Switch Together, you are not alone.</p>
+      <p class="src-jp">持続可能な選択が負担に感じられる世の中で、「みんなのおうちに太陽光」は力強いアイデアから生まれました…あなたは一人ではありません。</p>
+    </div>
+    <div class="policy-line"><span class="pl-lbl">方針</span>本国の物語構造は保ちつつ、中心語を生活者の言葉に。共同購入の中身を具体的に開く。</div>
+  </div>
+  <div class="sec-right">
+    <div class="rec-box">
+      <span class="rec-lbl">日本版（推奨）</span>
+      <p class="rec-main">暮らしを良くする選択が負担に感じられる世の中で、「みんなのおうちに太陽光」は生まれました。地域の家庭をまとめて適正な価格を引き出し、審査した業者だけが参加し、押し付けないガイドで判断を支えます。あなたは地域の中で、一人ではありません。</p>
+      <p class="rec-aim">本国8段落 → 4段落に圧縮。中段に共同購入の3要素を具体的に記載。</p>
+    </div>
+    <div class="other-box"><span class="ob-label">他の候補</span><ul><li><strong>直訳寄り：</strong>本国版の8段落をそのまま、直訳調だけ整えた版。</li><li><strong>大幅意訳：</strong>生活者の困りごと（太陽光・電気代の悩み）から始める版。</li></ul></div>
+    <div class="ask-box"><span class="ask-label">ご意見をいただきたい点</span>社会性のニュアンスをどこまで残すか。</div>
+  </div>
+</div>
+</div></section>
+<section class="slide" id="slide-10"><div class="slide-inner">
+<div class="s-head"><span class="s-num">09</span><span class="s-cat">HOW ｜ 運用</span><h2>Brand Personality</h2></div>
+<div class="sec-grid">
+  <div class="sec-left">
+    <div class="src-box">
+      <span class="src-lbl">原文</span>
+      <p class="src-en">The Neighbourhood Expert. Trusted at every level. Approachable, smart, reassuring and honest.</p>
+      <p class="src-jp">ご近所のエキスパート。あらゆるレベルで信頼される。親しみやすく、賢く、安心感があり、誠実。</p>
+    </div>
+    <div class="policy-line"><span class="pl-lbl">方針</span>「賢者／一般人」を廃止し本国の新人格に統合。4要素の関係性で運用する（日本語は控えめに）。</div>
+  </div>
+  <div class="sec-right">
+    <div class="rec-box">
+      <span class="rec-lbl">日本版（推奨）</span>
+      <p class="rec-main">地域の、暮らしのエネルギーの相談役</p>
+      <p class="rec-aim">親しみ・専門性・明快さ の3要素が揃うと、4つ目の「安心感」が自然に生まれる。この構造で運用します。</p>
+    </div>
+    <div class="other-box"><span class="ob-label">他の候補</span><ul><li><strong>詳しい人：</strong>地域の、暮らしのエネルギーに詳しい人</li><li><strong>事業特化：</strong>地域の、エネルギーに詳しい人</li></ul></div>
+    <div class="ask-box"><span class="ask-label">ご意見をいただきたい点</span>「相談役」という人物像でしっくりくるか。</div>
+  </div>
+</div>
+</div></section>
+<section class="slide" id="slide-11"><div class="slide-inner">
+<div class="s-head"><span class="s-num">10</span><span class="s-cat">HOW ｜ 運用</span><h2>Brand Values（6 Core Values）</h2></div>
+<div class="sec-grid">
+  <div class="sec-left">
+    <div class="src-box">
+      <span class="src-lbl">原文</span>
+      <p class="src-en">Sympathetic / Dedicated / Supportive / Knowledgeable / Trustworthy / Collaborative（ピラミッド構造）</p>
+      <p class="src-jp">共感的／献身的／支援的／豊富な知識／信頼できる／協力的</p>
+    </div>
+    <div class="policy-line"><span class="pl-lbl">方針</span>6項目は維持。本国のピラミッドをフラット並びに変え、日本の事業実態に合わせる。</div>
+  </div>
+  <div class="sec-right">
+    <div class="rec-box">
+      <span class="rec-lbl">日本版（推奨）</span>
+      <p class="rec-main">フラット並び ＋「信頼できる」を最優先軸に</p>
+      <p class="rec-aim">「信頼性は事業の基盤」というWSの声を反映し、6項目の中で「信頼できる」を筆頭に置きます。</p>
+    </div>
+    <div class="ask-box"><span class="ask-label">ご意見をいただきたい点</span>「献身的・協力的」は自治体接点で、それ以外は対消費者で前面に — という使い分けでよいか。</div>
+  </div>
+</div>
+</div></section>
+<section class="slide" id="slide-12"><div class="slide-inner">
+<div class="s-head"><span class="s-num">11</span><span class="s-cat">HOW ｜ 運用</span><h2>Key Message Hierarchy</h2></div>
+<p class="lead">関心を引いてから行動につなげる、メッセージの4段階。各段階の役割を確定するのが運用の要です。</p>
+<div class="kmh-rows">
+  <div class="kr"><span class="kr-lv">L1</span><div><strong>関心喚起</strong><p>電気代、見直しませんか。災害への備えにもなります。<span class="kr-note">＝間口を「災害」から「電気代」に広げる</span></p></div></div>
+  <div class="kr"><span class="kr-lv">L2</span><div><strong>プロダクトメリット</strong><p>地域の家庭が一緒に申し込むことで、適正な価格と確かな業者で太陽光を設置できる仕組みです。</p></div></div>
+  <div class="kr"><span class="kr-lv">L3</span><div><strong>不安払拭</strong><p>全国50以上の自治体と一緒に、9万世帯が参加。適正な価格・審査済みの業者・専門のガイダンスで、抜け漏れなく。</p></div></div>
+  <div class="kr"><span class="kr-lv">L4</span><div><strong>行動促進</strong><p>まずは、概算見積もりだけでも。参加登録は、決定ではありません。<span class="kr-note">＝契約を急がせない</span></p></div></div>
+</div>
+</div></section>
+<section class="slide" id="slide-13"><div class="slide-inner">
+<div class="s-head"><span class="s-num">12</span><span class="s-cat">運用</span><h2>ブランドをどう運用するか</h2></div>
+<div class="gov-hero">
+  <p class="gov-lead">ガイドラインにただ従うのではなく、<br><strong>自分たち自身がブランドそのものとしての意識で運用する。</strong></p>
+</div>
+<div class="gov-grid">
+  <div class="gov-card"><h3>定期的に集まり、見直す</h3><p>対外アウトプット（チラシ・LP・メール等）を持ち寄り、ブランドの観点でレビューする場を設ける。</p></div>
+  <div class="gov-card"><h3>ガイドライン自体も育てる</h3><p>運用しながら気づいた点を反映し、ガイドラインそのものをアップデートし続ける。</p></div>
+  <div class="gov-card"><h3>判断軸は自分の中に</h3><p>NGリストに照らすのではなく、「自分がブランドなら」という視点で主体的に判断する。</p></div>
+</div>
+</div></section>
+<section class="slide" id="slide-14"><div class="slide-inner">
+<div class="s-head"><span class="s-num">13</span><h2>本日ご意見をいただきたい論点</h2></div>
+<div class="ask-list">
+  <div class="al-row"><span class="al-sec">Mission/Vision</span><p>「エネルギー転換」の言い換え方／社会性をどこまで前に出すか</p></div>
+  <div class="al-row"><span class="al-sec">Promise</span><p>社会貢献のニュアンスをどこまで残すか／標語の方向性</p></div>
+  <div class="al-row"><span class="al-sec">Proposition</span><p>「専門のガイダンス」の言い表し方／「納得」という言葉でよいか</p></div>
+  <div class="al-row"><span class="al-sec">Story</span><p>社会性のニュアンスをどこまで残すか</p></div>
+  <div class="al-row"><span class="al-sec">Personality</span><p>「地域の、暮らしのエネルギーの相談役」でしっくりくるか</p></div>
+  <div class="al-row"><span class="al-sec">Values</span><p>ブランド固有／共同購入 の使い分けの考え方でよいか</p></div>
+</div>
+</div></section>
+<section class="slide" id="slide-15"><div class="slide-inner">
+<div class="s-closing">
+  <div class="cover-label">今後の進め方</div>
+  <h1>本日のご意見を反映し、<br>最終版に仕上げていきます。</h1>
+  <p class="cover-sub">確定後は、このガイドラインを起点に、<br>チラシ・LP・各種ツールのブランドレビューを運用に乗せていきます。</p>
+  <div class="cover-foot">iChoosr Japan ／ ブランドガイドライン 日本版</div>
+</div>
+</div></section>
+
+</div>
+<div class="nav">
+  <button id="prev" aria-label="前へ">‹</button>
+  <span class="pageno"><span id="cur">1</span> / 15</span>
+  <button id="next" aria-label="次へ">›</button>
+</div>
+<script>
+var deck=document.getElementById('deck');
+var total=15;
+function curIndex(){ return Math.round(deck.scrollLeft/deck.clientWidth); }
+function go(i){ i=Math.max(0,Math.min(total-1,i)); deck.scrollTo({left:i*deck.clientWidth,behavior:'smooth'}); }
+function update(){
+  var i=curIndex();
+  document.getElementById('cur').textContent=i+1;
+  document.getElementById('prev').disabled=(i===0);
+  document.getElementById('next').disabled=(i===total-1);
+  document.getElementById('progress').style.width=((i+1)/total*100)+'%';
+}
+document.getElementById('prev').onclick=function(){go(curIndex()-1);};
+document.getElementById('next').onclick=function(){go(curIndex()+1);};
+deck.addEventListener('scroll',function(){ window.requestAnimationFrame(update); });
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key==='PageDown'){ go(curIndex()+1); e.preventDefault(); }
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){ go(curIndex()-1); e.preventDefault(); }
+});
+window.addEventListener('resize',update);
+update();
+</script>
+</body>
+</html>
